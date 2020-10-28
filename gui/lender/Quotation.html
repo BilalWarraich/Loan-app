@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Loan-app</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="vendor/noui/nouislider.min.css">
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>	 				
+							
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+				<a href="lendee_home.html">
+						<button class="btn btn-success">
+							<span>
+								<i class="fa fa-long-arrow-left m-l-7" aria-hidden="true"></i>
+							</span>
+						</button>
+					</a>
+			<form class="contact100-form validate-form">
+				<span class="contact100-form-title">
+					Send Terms For Loan
+				</span>
+
+				<div class="wrap-input100 validate-input bg1" >
+					<span class="label-input100">Response ID *</span>
+					<input class="input-ID" type="text" name="ID" placeholder="Response ID" readonly>
+				</div>
+                <div class="wrap-input100 validate-input bg1" data-validate="Please Enter this feild">
+					<span class="label-input100">Loan Amount</span>
+					<input class="input100" type="number" name="Loan" placeholder="Loan Amount in USD">
+                </div>
+  
+                <div class="wrap-input100 validate-input bg1" data-validate="Please Enter this feild">
+					<span class="label-input100">Time Limit</span>
+					<input class="input100" type="date" name="return" placeholder="Loan Return Date">
+                </div>
+                <div class="wrap-input100 validate-input bg1" data-validate="Please Enter this feild">
+					<span class="label-input100">Interest</span>
+					<input class="input100" type="text" name="interest" placeholder="Interest After Time Limit">
+				</div>
+				<div class="container-contact100-form-btn">
+					<button class="contact100-form-btn"id="submit">
+						<span>
+							Submit
+							<i class="btn btn-click" aria-hidden="true" ></i>
+						</span>
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendor/select2/select2.min.js"></script>
+	<script src="scripts/jquery.min.js"></script>    
+    <script src="scripts/vendor.js"></script> 
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+	<script src="vendor/noui/nouislider.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+
+<script>if (window.module) module = window.module;</script>
+<script>
+
+var addressFromLink = '';
+var addressFromLink1 = ''	
+var lenderID = '';
+$(document).ready(function () {
+
+	addressFromLink = getQueryVariable("lendeeID");		
+
+	    var ts = Math.floor(new Date() / 1000)
+        var requestID = (ts + (Math.floor(Math.random() * 1000) + 1)).toString();
+		
+		$('.input-ID').val(requestID);
+});
+
+$(document).on('click', '#submit', function (evt) {
+		evt.preventDefault();
+
+        addressFromLink = getQueryVariable("lenderID");		
+        addressFromLink1 = getQueryVariable("lendeeID");		
+
+        var lenderID = addressFromLink;
+        var lendeeID = addressFromLink1;
+			 var ts = Math.floor(new Date() / 1000)
+            var requestID = (ts + (Math.floor(Math.random() * 1000) + 1)).toString();
+			 $.ajax({
+            type: "POST",
+			url: "http://localhost:8001/api/addResponse",
+            data: {
+			 
+            "responseID" :  $("input[type=text][name=ID]").val(),
+
+            "lendeeID" :lendeeID ,
+            
+            "lenderID" :lenderID ,
+
+            "loanAmount" : $("input[type=number][name=Loan]").val(),
+
+            "timeLimit" :  $("input[type=date][name=return]").val(),
+
+            "interest" :  $("input[type=text][name=interest]").val(),
+ 
+            "status" :  "Quoted",
+        
+        },
+         cache: false,
+         complete: function (data, status) {
+           if (status === 'error' || !data.responseText) {
+             swal("Request Failed",data.responseText,"error");
+           }
+           else {
+             swal("Success!","Loan Terms Sent to Lendee","success");
+			 
+			
+
+           }
+		 }
+		 
+		 
+	   });    
+
+});
+
+
+
+function getQueryVariable(variable)
+            {   
+              var query = window.location.search.substring(1);
+              var vars = query.split("&");
+              for (var i=0;i<vars.length;i++) 
+              {
+                var pair = vars[i].split("=");
+                if(pair[0] == variable)
+                {
+                  return pair[1];
+              }
+          }
+          return(false);
+      }
+
+	
+
+
+
+ 
+
+
+ </script>
+ <script>if (window.module) module = window.module;</script>
+</body>
+</html>

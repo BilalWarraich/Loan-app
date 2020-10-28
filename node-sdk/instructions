@@ -1,0 +1,74 @@
+
+Now Head To The NodeJS Directory:
+
+1)There Are two Directories All two Have Different Apis So the can use different Peers And Can Also Run On different Servers.
+
+2)********IMPORTANT******: PLEASE MAKE SURE THAT HFC-KEY-STORE DIRECTORY IS EMPTY IN EVERY OF THE 2 DIRECTORY AGAIN PLZ MAKE SURE OR IT WILL CREATE PROBLEMS
+
+
+3)Now In Each Directory Seprately in 2 different terminals From these directories one terminal from each directory run these 2 commands
+
+npm install
+
+npm audit fix //if neccessary.
+
+node enrollAdmin.js => in all seperately
+
+node registerUser.js 
+
+node app.js => in all seperately
+
+
+
+
+Now Head To GUI:
+Now either start the lendeePanel.html and lenderPanel.html file directly or run in the terminal google-chrome lendeePanel.html .
+Your System is Working.
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
