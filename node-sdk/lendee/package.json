@@ -7,7 +7,7 @@
     "express": "^4.17.1",
     "express-queue": "^0.0.12",
     "fabric-ca-client": "^1.4.2",
-    "fabric-client": "^1.4.2"
+    "fabric-client": "^1.4.13"
   },
   "devDependencies": {},
   "scripts": {

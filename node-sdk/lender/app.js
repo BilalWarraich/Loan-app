@@ -40,7 +40,7 @@ app.use(function(req, res, next) {
 app.use(queue({ activeLimit: 30, queuedLimit: -1 }));
 
 //run app on port
-app.listen(port, function () {
+app.listen(port,"0.0.0.0" ,function () {
   console.log('app running on port: %d', port);
 });
 
