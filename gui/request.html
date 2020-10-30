@@ -119,7 +119,7 @@ function getLenders(){
 
 	$.ajax({
                 type: 'GET',
-                url: 'http://localhost:8000/api/queryAllLenders',
+                url: 'http://ec2-3-85-159-72.compute-1.amazonaws.com:8000/api/queryAllLenders',
                 cache: false,
                 complete: function (data, status) { 
                     if(status === "success"){
@@ -150,7 +150,7 @@ function getLenderID(){
 	var name = document.getElementById('Lenders').value;
 	$.ajax({
             type: "GET",
-			url: 'http://localhost:8000/api/queryLenderByName?username='+name+'',
+			url: 'http://ec2-3-85-159-72.compute-1.amazonaws.com:8000/api/queryLenderByName?username='+name+'',
            cache: false,
          complete: function (data, status) {
            if (status === 'error' || !data.responseText) {
@@ -164,7 +164,7 @@ function getLenderID(){
 			 var lendeeID = addressFromLink;
      $.ajax({
             type: 'GET',
-			url: 'http://localhost:8000/api/queryRequests?lendeeID='+lendeeID+'&lenderID='+lenderID+'',
+			url: 'http://ec2-3-85-159-72.compute-1.amazonaws.com:8000/api/queryRequests?lendeeID='+lendeeID+'&lenderID='+lenderID+'',
             cache: false,
             complete: function (data, status) { 
                 if(status === "success" && data.responseJSON != ''){
@@ -178,7 +178,7 @@ function getLenderID(){
             var requestID = (ts + (Math.floor(Math.random() * 1000) + 1)).toString();
 			 $.ajax({
             type: "POST",
-			url: "http://localhost:8000/api/addRequest",
+			url: "http://ec2-3-85-159-72.compute-1.amazonaws.com:8000/api/addRequest",
             data: {
 			 
             "requestID" :  $("input[type=text][name=ID]").val(),

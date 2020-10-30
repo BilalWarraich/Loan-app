@@ -82,7 +82,7 @@ $(document).ready(function () {
     
     $.ajax({
             type: "GET",
-			url: 'http://localhost:8001/api/queryResponses?lenderID='+lenderID+'',
+			url: 'http://ec2-3-85-159-72.compute-1.amazonaws.com:8001/api/queryResponses?lenderID='+lenderID+'',
            cache: false,
          complete: function (data, status) {
            if (status === 'error' || !data.responseText ||data.responseJSON == '' ) {
@@ -127,7 +127,7 @@ $(document).ready(function () {
 function getLendeeName(variable){
 	$.ajax({
             type: "GET",
-			url: 'http://localhost:8001/api/queryLendeeByID?lendeeID='+variable+'',
+			url: 'http://ec2-3-85-159-72.compute-1.amazonaws.com:8001/api/queryLendeeByID?lendeeID='+variable+'',
            cache: false,
          complete: function (data, status) {
            if (status === 'error' || !data.responseText) {

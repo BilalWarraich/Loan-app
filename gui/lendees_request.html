@@ -83,7 +83,7 @@ $(document).ready(function () {
     
     $.ajax({
             type: "GET",
-			url: 'http://localhost:8001/api/querylendeeRequests?status='+status+'&lenderID='+lenderID+'',
+			url: 'http://ec2-3-85-159-72.compute-1.amazonaws.com:8001/api/querylendeeRequests?status='+status+'&lenderID='+lenderID+'',
            cache: false,
          complete: function (data, status) {
            if (status === 'error' || !data.responseText ||data.responseJSON == '' ) {

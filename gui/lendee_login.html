@@ -85,7 +85,7 @@ $(document).on('click', '#submit', function (evt) {
 
 		$.ajax({
             type: "GET",
-			url: 'http://localhost:8000/api/queryLendee?username='+username+'&password='+password+'',
+			url: 'http://ec2-3-85-159-72.compute-1.amazonaws.com:8000/api/queryLendee?username='+username+'&password='+password+'',
            cache: false,
          complete: function (data, status) {
            if (status === 'error' || !data.responseText || data.responseJSON == '') {
